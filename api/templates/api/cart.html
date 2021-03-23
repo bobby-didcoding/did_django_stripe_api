@@ -1,0 +1,83 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block extend_head %}
+
+<link rel="stylesheet" href="{% static 'stripe.css' %}"></link>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+<script src="{% static 'stripe.js' %}" defer></script>
+
+{% endblock %}
+
+
+{% block extend_nav %}
+
+<ul class="sidenav">
+  <li><a class="active" href="{% url 'users:account' %}">Demo User Account</a></li>
+  <li><a href="{% url 'api:cart' %}">Demo Cart</a></li>
+  <li><a href="{% url 'users:sign-out' %}">Sign out</a></li>
+</ul>
+
+{% endblock %}
+
+
+{% block content %}
+
+<h3>Django Stripe API Demo - Cart</h3>
+
+<div class="container">
+
+  {% if cards %}
+  <h4>Select a card to use</h4>
+  <table id="saved-cards">
+    <thead>
+      <tr>
+          <th hidden >ID</th>
+          <th>Type</th>
+          <th>Card Number</th>
+          <th>Exp date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in cards %}
+      <tr>
+        <td hidden value="{{c.0}}">{{c.0}}</td>
+        <td>{{c.1}}</td>
+        <td>{{c.2}}</td>
+        <td>{{c.3}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+  <button type="submit" disabled id="use-card" onclick="payWithSavedCard()">Pay £16.52 with saved card</button>
+
+  {% endif %}
+
+  <h4>Pay with new card</h4>
+  <form id="payment-form" style="width: 100%">
+    {% csrf_token %}
+    <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+    <button id="submit">
+      Pay £16.52 with new card
+    </button>
+    <p id="card-error" role="alert"></p>
+    <p class="result-message hidden">
+      Payment succeeded, see the result in your
+      <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+    </p>
+  </form>
+  
+</div>
+
+<script type="text/javascript">
+  var stripe_key = '{{stripe_key|safe}}'
+</script>
+
+{% endblock %}
+
+{% block extend_footer %}
+
+{% endblock extend_footer %}
