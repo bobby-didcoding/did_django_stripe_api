@@ -1,9 +1,9 @@
-# did_django_stripe_api
+# did_django_braintree_api
 Django project with a basic user authentication
 
 1) cd to development directory
-2) mkvirtualenv did_django_stripe_api
-3) mkdir did_django_stripe_api
+2) mkvirtualenv did_django_braintree_api
+3) mkdir did_django_braintree_api
 4) clone repository to new directory
 5) pip install -r requirements.txt
 6) Update settings.py with your email API information

@@ -58,6 +58,7 @@ class UserProfileForm(forms.ModelForm):
 		widget=forms.TextInput(attrs={'placeholder': '*Town or City..'}))
 	county = forms.CharField(max_length=100, required=True, 
 		widget=forms.TextInput(attrs={'placeholder': '*County..'}))
+	#66857
 	post_code = forms.CharField(max_length=8, required=True, 
 		widget=forms.TextInput(attrs={'placeholder': '*Postal Code..'}))
 
