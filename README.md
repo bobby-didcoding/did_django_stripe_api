@@ -1,5 +1,5 @@
 # did_django_stripe_api
-Django project with a basic user authentication
+Django project that uses Stripe to process online card payments
 
 1) cd to development directory
 2) mkvirtualenv did_django_stripe_api

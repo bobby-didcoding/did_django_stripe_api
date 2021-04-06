@@ -54,7 +54,6 @@ def payment(request):
 		amount = request.POST.get('amount')
 		stripe_amount = int(float(amount)*100)
 		
-
 		agent_id = user.userprofile.agent_id
 
 		if not agent_id:
